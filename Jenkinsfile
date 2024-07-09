@@ -5,7 +5,7 @@ pipeline {
         // Define Docker Hub credentials ID
         DOCKERHUB_CREDENTIALS = 'dockerhub'
         // Define Docker image details
-        DOCKER_IMAGE = 'swetha328/myhtmlapp'
+        DOCKER_IMAGE = 'bharath1808/myhtml'
         // Define Docker container name
         CONTAINER_NAME = 'mycontainer'
     }
@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from Git repository
-                git branch: 'main', url: 'https://github.com/swethacse20/cicd.git'
+                git branch: 'main', url: 'https://github.com/bharathreddyvupperpally/cicd.git'
             }
         }
 
@@ -32,7 +32,7 @@ pipeline {
                 // Push Docker image to Docker Hub
                 script {
                     docker.withRegistry('', 'dockerhub') {
-                        docker.image('swetha328/myhtmlapp:1').push('1')
+                        docker.image('bharath1808/myhtmlapp:1').push('1')
                     }
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
                 // Pull Docker image from Docker Hub
                 script {
                    docker.withRegistry('', 'dockerhub') {
-                        docker.image('swetha328/myhtmlapp:1').pull()
+                        docker.image('bharath1808/myhtmlapp:1').pull()
                 }
             }
           }
@@ -53,7 +53,7 @@ pipeline {
                 // Run Docker container
                script {
                     docker.withRegistry('', 'dockerhub') {
-                        docker.image('swetha328/myhtmlapp:1').run('-d -p 8080:80 --name mycontainer')
+                        docker.image('bharath1808/myhtmlapp:1').run('-d -p 8080:80 --name mycontainer')
                     }
                 }
             }
@@ -71,7 +71,7 @@ pipeline {
             script {
                 sh "docker stop mycontainer || true"
                 sh "docker rm mycontainer || true"
-                sh "docker rmi swetha328/myhtmlapp:1 || true"
+                sh "docker rmi bharath1808/myhtmlapp:1 || true"
             }
         }
     }
