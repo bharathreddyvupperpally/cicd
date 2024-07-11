@@ -53,7 +53,7 @@ pipeline {
                 // Run Docker container
                script {
                     docker.withRegistry('', 'dockerhub') {
-                        docker.image('bharath1808/myhtmlapp:6').run('-d -p 8084:80 --name mycontainer')
+                        docker.image('bharath1808/myhtml:6').run('-d -p 8084:80 --name mycontainer')
                     }
                 }
             }
