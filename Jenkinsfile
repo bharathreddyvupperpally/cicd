@@ -32,7 +32,7 @@ pipeline {
                 // Push Docker image to Docker Hub
                 script {
                     docker.withRegistry('', 'dockerhub') {
-                        docker.image('bharath1808/myhtmlapp:1').push('1')
+                        docker.image('bharath1808/myhtml:1').push('1')
                     }
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
                 // Pull Docker image from Docker Hub
                 script {
                    docker.withRegistry('', 'dockerhub') {
-                        docker.image('bharath1808/myhtmlapp:1').pull()
+                        docker.image('bharath1808/myhtml:1').pull()
                 }
             }
           }
@@ -71,7 +71,7 @@ pipeline {
             script {
                 sh "docker stop mycontainer || true"
                 sh "docker rm mycontainer || true"
-                sh "docker rmi bharath1808/myhtmlapp:1 || true"
+                sh "docker rmi bharath1808/myhtml:1 || true"
             }
         }
     }
